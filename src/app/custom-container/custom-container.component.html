@@ -1,3 +1,17 @@
 <p>custom-container works!</p>
 
 <button (click)="example()">START STORE</button>
+{{ entity$ | async | json }}
+
+
+
+@for(entity of entity$ | async; track entity.id){
+<p>{{entity.title}}</p>
+} @empty {
+<p>No data</p>
+<div class="alert">
+    @if(error$ | async; as error){
+    {{error.message}}
+    }
+</div>
+}
